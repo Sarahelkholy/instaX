@@ -22,6 +22,15 @@ class MyUserEntity extends Equatable {
     };
   }
 
+  static MyUserEntity fromDocument(Map<String, dynamic> doc) {
+    return MyUserEntity(
+      id: doc['id'] as String,
+      email: doc['email'] as String,
+      name: doc['name'] as String,
+      photo: doc['photo'] as String,
+    );
+  }
+
   @override
   List<Object?> get props => [id, email, name, photo];
 
