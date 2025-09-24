@@ -1,5 +1,5 @@
-name: instax
-description: "A new Flutter project."
+name: post_repository
+description: dart package manages posts
 
 publish_to: "none" 
 
@@ -12,7 +12,6 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.6
-  firebase_core: ^2.22.0
   flutter:
     sdk: flutter
 
