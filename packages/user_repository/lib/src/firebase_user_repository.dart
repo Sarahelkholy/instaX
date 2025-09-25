@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,11 +8,11 @@ import 'package:user_repository/src/models/my_user.dart';
 import 'user_repo.dart';
 
 class FirebaseUserRepository implements UserRepository {
-  final FirebaseAuth _firebaseAuth;
-  final userCollection = FirebaseFirestore.instance.collection('users');
-
-  FirebaseUserRepository({required FirebaseAuth? firebaseAuth})
+  FirebaseUserRepository({FirebaseAuth? firebaseAuth})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+
+  final FirebaseAuth _firebaseAuth;
+  final usersCollection = FirebaseFirestore.instance.collection('users');
 
   /// Stream of [MyUser] which will emit the current user when
   /// the authentication state changes
@@ -35,7 +37,7 @@ class FirebaseUserRepository implements UserRepository {
 
       return myUser;
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       rethrow;
     }
   }
@@ -46,7 +48,7 @@ class FirebaseUserRepository implements UserRepository {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       rethrow;
     }
   }
@@ -56,7 +58,7 @@ class FirebaseUserRepository implements UserRepository {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       rethrow;
     }
   }
@@ -74,10 +76,10 @@ class FirebaseUserRepository implements UserRepository {
   @override
   Future<MyUser> getUserData(String myUserId) async {
     try {
-      return userCollection.doc(myUserId).get().then((value) =>
+      return usersCollection.doc(myUserId).get().then((value) =>
           MyUser.fromEntity(MyUserEntity.fromDocument(value.data()!)));
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       rethrow;
     }
   }
@@ -85,9 +87,9 @@ class FirebaseUserRepository implements UserRepository {
   @override
   Future<void> setUserData(MyUser user) async {
     try {
-      await userCollection.doc(user.id).set(user.toEntity().toDocument());
+      await usersCollection.doc(user.id).set(user.toEntity().toDocument());
     } catch (e) {
-      debugPrint(e.toString());
+      log(e.toString());
       rethrow;
     }
   }

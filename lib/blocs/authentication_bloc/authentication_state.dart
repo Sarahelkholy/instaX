@@ -12,7 +12,7 @@ class AuthenticationState extends Equatable {
   });
 
   ///No information about the [AuthenticationStatus] of the current user.
-  const AuthenticationState.unkown() : this._();
+  const AuthenticationState.unknown() : this._();
 
   /// current user is [authenticated].
   const AuthenticationState.authenticated(User user)
@@ -22,5 +22,5 @@ class AuthenticationState extends Equatable {
   const AuthenticationState.unauthenticated()
       : this._(status: AuthenticationStatus.unauthenticated);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [status, user];
 }

@@ -5,21 +5,16 @@ class MyUser extends Equatable {
   final String id;
   final String email;
   final String name;
-  final String? photo;
+  String? photo;
 
-  const MyUser({
+  MyUser({
     required this.id,
     required this.email,
     required this.name,
     this.photo,
   });
 
-  static const empty = MyUser(
-    id: '',
-    email: '',
-    name: '',
-    photo: '',
-  );
+  static final empty = MyUser(id: '', email: '', name: '', photo: '');
 
   MyUser copyWith({
     String? id,

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +15,7 @@ class AuthenticationBloc
 
   AuthenticationBloc({required UserRepository myUserRepository})
       : userRepository = myUserRepository,
-        super(const AuthenticationState.unkown()) {
+        super(const AuthenticationState.unknown()) {
     _userSubscription = userRepository.user.listen((authUser) {
       add(AuthenticationUserChanged(authUser));
     });
@@ -29,7 +28,6 @@ class AuthenticationBloc
       }
     });
   }
-
   @override
   Future<void> close() {
     _userSubscription.cancel();
