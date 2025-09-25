@@ -4,13 +4,13 @@ class MyUserEntity extends Equatable {
   final String id;
   final String email;
   final String name;
-  final String? photo;
+  final String? picture;
 
   const MyUserEntity({
     required this.id,
     required this.email,
     required this.name,
-    this.photo,
+    this.picture,
   });
 
   Map<String, Object?> toDocument() {
@@ -18,29 +18,28 @@ class MyUserEntity extends Equatable {
       'id': id,
       'email': email,
       'name': name,
-      'photo': photo,
+      'picture': picture,
     };
   }
 
   static MyUserEntity fromDocument(Map<String, dynamic> doc) {
     return MyUserEntity(
-      id: doc['id'] as String,
-      email: doc['email'] as String,
-      name: doc['name'] as String,
-      photo: doc['photo'] as String,
-    );
+        id: doc['id'] as String,
+        email: doc['email'] as String,
+        name: doc['name'] as String,
+        picture: doc['picture'] as String?);
   }
 
   @override
-  List<Object?> get props => [id, email, name, photo];
+  List<Object?> get props => [id, email, name, picture];
 
   @override
   String toString() {
-    return '''UserEntity:{
-    id:$id
-    email:$email
-    name:$name
-    photo:$photo}
-''';
+    return '''UserEntity: {
+      id: $id
+      email: $email
+      name: $name
+      picture: $picture
+    }''';
   }
 }

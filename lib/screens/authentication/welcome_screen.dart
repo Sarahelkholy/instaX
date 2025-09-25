@@ -75,14 +75,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     children: [
                       BlocProvider<SignInBloc>(
                         create: (context) => SignInBloc(
-                            myUserRepository: context
+                            userRepository: context
                                 .read<AuthenticationBloc>()
                                 .userRepository),
                         child: const SignInScreen(),
                       ),
                       BlocProvider<SignUpBloc>(
                         create: (context) => SignUpBloc(
-                            myUserRepository: context
+                            userRepository: context
                                 .read<AuthenticationBloc>()
                                 .userRepository),
                         child: const SignUpScreen(),

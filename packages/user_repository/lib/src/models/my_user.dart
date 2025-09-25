@@ -1,36 +1,42 @@
 import 'package:equatable/equatable.dart';
-import 'package:user_repository/src/entities/entities.dart';
+
+import '../entities/entities.dart';
 
 class MyUser extends Equatable {
   final String id;
   final String email;
   final String name;
-  String? photo;
+  String? picture;
 
   MyUser({
     required this.id,
     required this.email,
     required this.name,
-    this.photo,
+    this.picture,
   });
 
-  static final empty = MyUser(id: '', email: '', name: '', photo: '');
+  /// Empty user which represents an unauthenticated user.
+  static final empty = MyUser(id: '', email: '', name: '', picture: '');
 
+  /// Modify MyUser parameters
   MyUser copyWith({
     String? id,
     String? email,
     String? name,
-    String? photo,
+    String? picture,
   }) {
     return MyUser(
       id: id ?? this.id,
       email: email ?? this.email,
       name: name ?? this.name,
-      photo: photo ?? this.photo,
+      picture: picture ?? this.picture,
     );
   }
 
+  /// Convenience getter to determine whether the current user is empty.
   bool get isEmpty => this == MyUser.empty;
+
+  /// Convenience getter to determine whether the current user is not empty.
   bool get isNotEmpty => this != MyUser.empty;
 
   MyUserEntity toEntity() {
@@ -38,18 +44,19 @@ class MyUser extends Equatable {
       id: id,
       email: email,
       name: name,
-      photo: photo,
+      picture: picture,
     );
   }
 
   static MyUser fromEntity(MyUserEntity entity) {
     return MyUser(
-        id: entity.id,
-        email: entity.email,
-        name: entity.name,
-        photo: entity.photo);
+      id: entity.id,
+      email: entity.email,
+      name: entity.name,
+      picture: entity.picture,
+    );
   }
 
   @override
-  List<Object?> get props => [id, email, name, photo];
+  List<Object?> get props => [id, email, name, picture];
 }
