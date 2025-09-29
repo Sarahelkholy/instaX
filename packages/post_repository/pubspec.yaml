@@ -1,28 +1,29 @@
 name: post_repository
-description: dart package manages posts
-
-publish_to: "none" 
-
-
-version: 1.0.0+1
+description: Dart package which manages the posts.
+publish_to: 'none'
+version: 0.1.0
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
-
+  sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
-  cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
+  uuid: ^4.0.0
+
+  # Firebase
+  cloud_firestore: ^4.13.0
+
+  # Custom Repository
+  user_repository:
+    path: ../user_repository
+  
+  
 
 dev_dependencies:
-  
-  flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-
+  flutter_lints: ^2.0.0
 
 flutter:
-  
   uses-material-design: true
-  

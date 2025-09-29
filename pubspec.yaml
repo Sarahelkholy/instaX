@@ -22,10 +22,14 @@ dependencies:
   #bloc
   flutter_bloc: ^9.1.1
   equatable: ^2.0.7
+  intl: ^0.18.1
+
 
  #custom repository
   user_repository:
     path: packages/user_repository
+  post_repository:
+    path: packages/post_repository
 
 dev_dependencies:
   flutter_lints: ^3.0.0

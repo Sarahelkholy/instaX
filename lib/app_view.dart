@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instax/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:instax/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:instax/screens/authentication/welcome_screen.dart';
+import 'package:instax/screens/home/home_screen.dart';
+import 'package:post_repository/post_repository.dart';
 
 import 'blocs/authentication_bloc/authentication_bloc.dart';
-import 'screens/home/home_screen.dart';
+import 'blocs/get_post_bloc/get_post_bloc.dart';
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
@@ -17,8 +19,8 @@ class MyAppView extends StatelessWidget {
       title: 'InstaX',
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
-            background: Colors.white,
-            onBackground: Colors.black,
+            surface: Colors.white,
+            onSurface: Colors.black,
             primary: Color.fromRGBO(206, 147, 216, 1),
             onPrimary: Colors.black,
             secondary: Color.fromRGBO(244, 143, 177, 1),
@@ -45,6 +47,10 @@ class MyAppView extends StatelessWidget {
                       myUserId:
                           context.read<AuthenticationBloc>().state.user!.uid)),
               ),
+              BlocProvider(
+                  create: (context) =>
+                      GetPostBloc(postRepository: FirebasePostRepository())
+                        ..add(GetPosts()))
             ],
             child: const HomeScreen(),
           );
